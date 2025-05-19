@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Calculadora de Huella de Carbono</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>Calculadora de Huella de Carbono</h1>
+
+    <form method="post">
+      <label for="transport">Medio de transporte:</label>
+      <select name="transport" required>
+        <option value="coche">Coche</option>
+        <option value="autobús">Autobús</option>
+        <option value="tren">Tren</option>
+        <option value="bicicleta">Bicicleta</option>
+        <option value="motocicleta">Motocicleta</option>
+        <option value="avión">Avión</option>
+      </select>
+
+      <label for="km">¿Cuántos km conduces por semana?</label>
+      <input type="number" name="km" step="any" required />
+
+      <button type="submit">Calcular</button>
+    </form>
+
+    {% if result %}
+    <h2>{{ result }}</h2>
+    {% endif %}
+
+    <!-- 2) Historial guardado en sesión -->
+    {% if history %}
+    <h3>Últimos cálculos</h3>
+    <ul>
+      {% for h in history %}
+      <li>
+        {{ h.date }}: {{ h.transport | capitalize }} – {{ h.km }} km → {{ h.co2
+        }} kg CO₂
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- 3) Recomendaciones ambientales -->
+    {% if recommendations %}
+    <h3>Recomendaciones</h3>
+    <ul>
+      {% for r in recommendations %}
+      <li>{{ r }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h3>Prueba Integración con GitHub</h3>
+  </body>
+</html>
