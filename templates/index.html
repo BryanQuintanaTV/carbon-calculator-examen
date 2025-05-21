@@ -13,30 +13,35 @@
       <select name="transport" required>
         <option value="coche">Coche</option>
         <option value="autobús">Autobús</option>
-        <option value="metro">Metro</option>
+        <option value="tren">Tren</option>
         <option value="bicicleta">Bicicleta</option>
         <option value="motocicleta">Motocicleta</option>
+        <option value="avión">Avión</option>
       </select>
-      <br>
-      <br>
-      <label for="km">¿Cuántos km haces por semana?</label>
-      <input type="number" name="km" step="any" required="">
-      <br><br>
-      <button class="button_slide slide_inside" type="submit">Calcular</button>
-    </form>
-      <br>
 
-   {% if result %}
+      <br><br>
+
+      <label for="km">¿Cuántos km conduces por semana?</label>
+      <input type="number" name="km" step="any" required />
+
+      <!-- HTML !-->
+       <br><br>
+       
+      <button class="button-50" role="button">Calcular</button>
+    </form>
+
+    {% if result %}
     <h2>{{ result }}</h2>
     {% endif %}
 
     <!-- 2) Historial guardado en sesión -->
     {% if history %}
-    <h3>Historial</h3>
+    <h3>Últimos cálculos</h3>
     <ul>
       {% for h in history %}
       <li>
-        {{ h.transport | capitalize }} – {{ h.km }} km → {{ h.co2 }} kg CO₂
+        {{ h.date }}: {{ h.transport | capitalize }} – {{ h.km }} km → {{ h.co2
+        }} kg CO₂
       </li>
       {% endfor %}
     </ul>
@@ -44,7 +49,7 @@
 
     <!-- 3) Recomendaciones ambientales -->
     {% if recommendations %}
-    <h3>Recomendaciones para reducir el CO₂</h3>
+    <h3>Recomendaciones</h3>
     <ul>
       {% for r in recommendations %}
       <li>{{ r }}</li>
@@ -52,9 +57,6 @@
     </ul>
     {% endif %}
 
-    <h3>Gabriel Josue Marquez Torres - 21550316<br>
-    Cloud Computing<br>
-    Ingeniería en Sistemas Computacionales<br>
-    Instituto Tecnologico de Chihuahua II</h3>
-</body></html>
-
+    <h3>Edgar Alejandro Martinez Chavez</h3>
+  </body>
+</html>
